@@ -10,3 +10,11 @@ export const handleResponse = (response) => {
 }
 
 export const API_BASE_URL = 'https://api.udilia.com/coins/v1/cryptocurrencies'
+
+export function renderPercentageArrow(percentage) {
+    if (percentage > 0) {
+        return <span style={{color: 'green'}}>{percentage} % &uarr;</span>
+    } else {
+        return <span style={{color: 'red'}}>{percentage} % &darr; </span>
+    }
+}

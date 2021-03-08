@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {API_BASE_URL, handleResponse} from "../../utils/Helpers";
+import {API_BASE_URL, handleResponse, renderPercentageArrow} from "../../utils/Helpers";
 import Pagination from "../pagination/Pagination";
 import CurrencyTable from "../currency_table/CurrencyTable";
 
@@ -40,15 +40,6 @@ class List extends Component {
                     loading: false,
                 });
             });
-    }
-
-    // Format percent change
-    renderPercentageArrow = (percentage) => {
-        if (percentage > 0) {
-            return <span style={{color: 'green'}}>{percentage} % &uarr;</span>
-        } else {
-            return <span style={{color: 'red'}}>{percentage} % &darr; </span>
-        }
     }
 
     // Handle click selection
@@ -94,7 +85,7 @@ class List extends Component {
             <div className="container">
                 <CurrencyTable
                     currencies={currencies}
-                    renderPercentArrow={this.renderPercentageArrow}
+                    renderPercentArrow={renderPercentageArrow}
                 />
                 <Pagination
                     page={page}

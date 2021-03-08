@@ -1,14 +1,20 @@
 import React from 'react'
+import {Link} from "react-router-dom";
+import {renderPercentageArrow} from "../../utils/Helpers";
 
 class CurrencyDetails extends React.Component {
     state = {
         cryptocurrency: {},
         error: null,
         loading: false,
+        currencyId: null,
     }
 
     componentDidMount() {
-        this.fetchData('bitcoin')
+        this.setState({
+            currencyId: this.props.match.params.id
+        }, () => this.fetchData(this.state.currencyId))
+
     }
 
     fetchData = (id) => {
@@ -26,7 +32,7 @@ class CurrencyDetails extends React.Component {
                     cryptocurrency: data,
                     loading: false
                 })
-                console.log(data)
+                // console.log(data)
             })
             .catch((error) => {
                 this.setState({
@@ -38,27 +44,53 @@ class CurrencyDetails extends React.Component {
 
     render() {
         const {loading, cryptocurrency, error} = this.state
-        if (loading){
+        if (loading) {
             return <div className="container">
                 <div
                     className="shadow-sm col-sm-6 col-lg-6 m-auto">
-                    <span className="p-3" style={{ color: 'blueviolet' }}>Loading...</span>
+                    <span className="p-3" style={{color: 'blueviolet'}}>Loading...</span>
                 </div>
             </div>
         }
-        if (error){
+        if (error) {
             return <div className="container">
                 <div
                     className="shadow-sm col-sm-6 col-lg-6 m-auto">
-                    <span className="p-3" style={{ color: 'blueviolet' }}>{error.errorMessage}</span>
+                    <span className="p-3" style={{color: 'blueviolet'}}>{error.errorMessage}</span>
                 </div>
             </div>
         }
         return (
             <div className="container">
+                <Link
+                    className="ml-3"
+                    style={{color: '#ccc'}}
+                    to="/currencies">
+                    <i className="fa fa-home fa-2x"/> Home
+                </Link>
                 <div
-                    className="shadow-sm col-sm-6 col-lg-6 m-auto">
+                    className="shadow-sm col-sm-6 col-lg-6 m-auto p-3">
                     <span className="p-3">{cryptocurrency.name}</span>
+                    (<b>{cryptocurrency.symbol}</b>)
+                    <hr/>
+                    <div>
+                        <b>Rank</b>: <span className="badge badge-pill badge-info m-2"
+                                           style={{fontSize: '20px'}}>{cryptocurrency.rank}</span>
+                    </div>
+                    <div>
+                        <b>Price</b>: <span className="badge badge-pill badge-warning m-2"
+                                            style={{fontSize: '20px'}}>${cryptocurrency.price}</span>
+                    </div>
+                    <div className="mt-2">
+                        <b>Change (24h)</b>: <span
+                        className="mt-3">{renderPercentageArrow(cryptocurrency.percentChange24h)}</span>
+                    </div>
+                    <div className="mt-2">
+                        <b>Total Supplied</b>: <span className="mt-3">$ {cryptocurrency.totalSupply}</span>
+                    </div>
+                    <div className="mt-2">
+                        <b>Volume</b>: <span className="mt-3">$ {cryptocurrency.volume24h}</span>
+                    </div>
                 </div>
             </div>
         )
