@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/common/Header";
 import List from "./components/list/List";
 import "./index.css";
+import React from "react";
 
 function App() {
     return (

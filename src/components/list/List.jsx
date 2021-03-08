@@ -39,6 +39,11 @@ class List extends Component {
         }
     }
 
+    // Handle click selection
+    handleCurrencySelection = (currency) => {
+        console.log(currency)
+    }
+
     render() {
         // Destructuring state
         const {loading, error, currencies} = this.state
@@ -69,13 +74,15 @@ class List extends Component {
                         <th>Crypto-currency</th>
                         <th>Price</th>
                         <th>Market Cap</th>
-                        <th>Change Percentage (24H)</th>
+                        <th>(24H) Change</th>
                     </tr>
                     </thead>
                     <tbody>
                     {currencies.map((currency) => {
                         return (
-                            <tr key={currency.id}>
+                            <tr key={currency.id}
+                                onClick={() => this.handleCurrencySelection(currency)}
+                                style={{cursor: 'pointer'}}>
                                 <td>{currency.rank}</td>
                                 <td>{currency.name}</td>
                                 <td>$ {currency.price}</td>
