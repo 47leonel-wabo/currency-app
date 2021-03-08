@@ -9,4 +9,4 @@ export const handleResponse = (response) => {
     })
 }
 
-export const API_BASE_URL = 'https://api.udilia.com/coins/v1'
+export const API_BASE_URL = 'https://api.udilia.com/coins/v1/cryptocurrencies'
