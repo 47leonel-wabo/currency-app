@@ -4,6 +4,7 @@ import "./index.css";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import React from "react";
 import List from "./components/list/List";
+import NotFound from "./components/not_found/NotFound";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Header title={"Crypto-Currencies"}/>
                 <Switch>
                     <Route path="/currencies" component={List} exact/>
+                    <Route component={NotFound} />
                 </Switch>
             </>
         </BrowserRouter>
