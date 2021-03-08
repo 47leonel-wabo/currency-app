@@ -4,7 +4,8 @@ class Header extends Component {
   state = {};
   render() {
     return (
-      <div className="container">
+      <div 
+      className="container p-4">
         <h1>{this.props.title}</h1>
       </div>
     );
