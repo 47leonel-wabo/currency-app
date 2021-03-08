@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {API_BASE_URL, handleResponse} from "../../utils/Helpers";
+import Pagination from "../pagination/Pagination";
 
 class List extends Component {
     // class' data state
@@ -7,18 +8,28 @@ class List extends Component {
         loading: false,
         currencies: [],
         error: null,
+        page: 1,
+        totalPages: 0,
     };
 
     // Lifecycle hook, runs when component is mounted
     componentDidMount() {
+        this.fetchRemoteData()
+    }
+
+    fetchRemoteData() {
         this.setState({
             loading: true,
         });
-        fetch(API_BASE_URL.concat("/cryptocurrencies?page=1&perPage=20"))
+
+        const {page} = this.state
+        fetch(`${API_BASE_URL}/cryptocurrencies?page=${page}&perPage=20`)
             .then(handleResponse)
             .then((data) => {
+                const {currencies, totalPages} = data
                 this.setState({
-                    currencies: data.currencies,
+                    currencies,
+                    totalPages,
                     loading: false,
                 });
             })
@@ -44,9 +55,22 @@ class List extends Component {
         console.log(currency)
     }
 
+    // Handle pagination event
+    handlePagination = (direction) => {
+        let nextPage = this.state.page
+        nextPage = direction === 'next' ? nextPage + 1 : nextPage - 1
+        this.setState({
+                page: nextPage,
+            },
+            // Run once page is updated, then fetch data of the new page
+            () => {
+                this.fetchRemoteData()
+            })
+    }
+
     render() {
         // Destructuring state
-        const {loading, error, currencies} = this.state
+        const {loading, error, currencies, page, totalPages} = this.state
 
         // Render error message, if any
         if (error) {
@@ -94,6 +118,11 @@ class List extends Component {
                     })}
                     </tbody>
                 </table>
+                <Pagination
+                    page={page}
+                    totalPages={totalPages}
+                    handlePagination={this.handlePagination}
+                />
             </div>
         );
     }
