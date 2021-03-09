@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Search from "../search/Search";
 
 class Header extends Component {
     state = {};
@@ -8,6 +9,7 @@ class Header extends Component {
             <div
                 className="container p-4">
                 <h1>{this.props.title}</h1>
+                <Search />
             </div>
         );
     }

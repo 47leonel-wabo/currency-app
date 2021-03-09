@@ -24,7 +24,7 @@ class List extends Component {
         });
 
         const {page} = this.state
-        fetch(`${API_BASE_URL}?page=${page}&perPage=20`)
+        fetch(`${API_BASE_URL}/cryptocurrencies?page=${page}&perPage=20`)
             .then(handleResponse)
             .then((data) => {
                 const {currencies, totalPages} = data
