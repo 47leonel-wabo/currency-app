@@ -8,4 +8,4 @@ This project is an intermediate React project exercise for mastering all necessa
 ![](./screenshots/home.png) 
 
 ### Detail
-<img src="./screenshots/detail.png" alt="detail" width="200"/>
+<img src="./screenshots/detail.png" alt="detail" width="968"/>
