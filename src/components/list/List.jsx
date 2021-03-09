@@ -75,7 +75,9 @@ class List extends Component {
                 <div
                     style={{textAlign: "center", fontSize: "24px", color: "blueviolet"}}
                 >
-                    Loading...
+                    <div className="spinner-border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
                 </div>
             );
         }
