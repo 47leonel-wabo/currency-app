@@ -29,7 +29,8 @@ class Search extends React.Component {
                         placeholder="Currency name"
                         value={searchQuery}
                         onChange={this.handleFormInput}/>
-                    {searching && searchQuery && <div className="spinner-grow spinner-grow-sm mt-2 ml-2" role="status">
+                    {searching && searchQuery &&
+                    <div className="spinner-grow spinner-grow-sm mt-2 ml-2" role="status">
                         <span className="sr-only">Loading...</span>
                     </div>}
                     {this.renderSearchResult(searchResult, searchQuery, searching)}
