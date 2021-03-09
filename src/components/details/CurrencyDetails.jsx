@@ -58,7 +58,11 @@ class CurrencyDetails extends React.Component {
             return <div className="container">
                 <div
                     className="shadow-sm col-sm-6 col-lg-6 m-auto">
-                    <span className="p-3" style={{color: 'blueviolet'}}>Loading...</span>
+                    <div className="d-flex justify-content-center p-4">
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only" style={{color: 'blueviolet'}}>Loading...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         }
