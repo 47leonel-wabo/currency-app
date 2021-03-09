@@ -17,8 +17,6 @@ class Search extends React.Component {
             <div className="col-sm-6 m-auto">
                 <div className="input-group mb-3">
                     {/*<input*/}
-                    {/*    className="col-sm"*/}
-                    {/*    type="text"*/}
                     {/*    ref={(input) => this.searchQuery = input}/>*/}
                     <div className="input-group-prepend">
                         <span className="input-group-text"><i className="fa fa-search"/></span>
